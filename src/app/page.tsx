@@ -16,7 +16,7 @@ export default function Home() {
         }
       />
       <Suspense>
-        <RandomMoviesSection count={8} id="random-movies" />
+        <RandomMoviesSection count={8} id="random-movies" canReload />
       </Suspense>
     </main>
   );

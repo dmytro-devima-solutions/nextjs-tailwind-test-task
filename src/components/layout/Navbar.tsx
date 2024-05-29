@@ -29,9 +29,6 @@ const Navbar = () => {
               <Link href="/">Home</Link>
             </li>
             <li>
-              <Link href="/search">Search</Link>
-            </li>
-            <li>
               <Link href="/random">Random movie</Link>
             </li>
           </ul>
@@ -42,24 +39,7 @@ const Navbar = () => {
           Movies Library
         </a>
       </div>
-      <div className="navbar-end">
-        <Link className="btn btn-ghost btn-circle" href="/search">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-5 w-5"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-            />
-          </svg>
-        </Link>
-      </div>
+      <div className="navbar-end"></div>
     </header>
   );
 };

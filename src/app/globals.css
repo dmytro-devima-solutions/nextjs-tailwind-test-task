@@ -10,4 +10,5 @@
 
 html {
   background-color: #1c2025;
+  scroll-behavior: smooth;
 }

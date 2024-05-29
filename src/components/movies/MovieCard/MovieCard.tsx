@@ -1,10 +1,9 @@
-'use client';
-
 import { MovieDto } from '@/services/movie.service';
-import Image from 'next/image';
 import Link from 'next/link';
 import { HTMLAttributes } from 'react';
-import { useMovieCard } from './useMovieCard';
+import MovieThumbnail from '../MovieThumbnail';
+import { twMerge } from 'tailwind-merge';
+import { getMovieKey } from '../../../../utils/movie.utils';
 
 export interface MovieCardProps extends HTMLAttributes<HTMLDivElement> {
   isLoading?: boolean;
@@ -12,8 +11,6 @@ export interface MovieCardProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 const MovieCard = ({ movie, isLoading, ...domProps }: MovieCardProps) => {
-  const { useImagePlaceholder, onImageLoadError } = useMovieCard(movie);
-
   if (isLoading) {
     return 'Loading...';
   }
@@ -21,25 +18,18 @@ const MovieCard = ({ movie, isLoading, ...domProps }: MovieCardProps) => {
     return null;
   }
 
-  const thumbnail = useImagePlaceholder ? (
-    <div className="flex min-h-96 justify-center bg-base-200">
-      <span className="text-xl font-bold my-auto">No Image</span>
-    </div>
-  ) : (
-    <figure className="relative min-h-96">
-      <Image
-        fill
-        className="object-cover"
-        src={movie.thumbnail!}
-        alt={movie.title}
-        onError={onImageLoadError}
-      />
-    </figure>
-  );
-
   return (
-    <div {...domProps} className="card bg-base-100 shadow-xl overflow-hidden">
-      {thumbnail}
+    <div
+      {...domProps}
+      className={twMerge('card bg-base-100 shadow-xl overflow-hidden', domProps.className)}
+    >
+      <MovieThumbnail
+        src={movie.thumbnail}
+        alt={movie.title}
+        errorText="No Image"
+        className="min-h-96"
+        imageClassName="object-cover"
+      />
       <div className="card-body">
         <h2 className="card-title">
           {movie.title}
@@ -54,7 +44,7 @@ const MovieCard = ({ movie, isLoading, ...domProps }: MovieCardProps) => {
         </div>
         <div className="card-actions justify-end mt-auto pt-6">
           <Link
-            href={`/movie/${encodeURIComponent(`${movie.title} ${movie.year}`)}`}
+            href={`/movie/${encodeURIComponent(getMovieKey(movie))}`}
             className="btn w-full btn-outline btn-primary"
           >
             More Details

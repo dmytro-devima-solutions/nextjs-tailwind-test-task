@@ -2,6 +2,7 @@
 
 import moviesData from '@/data/movies-2020s.json';
 import { cookies } from 'next/headers';
+import { getMovieKey } from '../../utils/movie.utils';
 
 export interface MovieDto {
   title: string;
@@ -20,8 +21,6 @@ export interface MovieSearchOptions {
   offset?: number;
   limit?: number;
 }
-
-const getMovieKey = (movie: Pick<MovieDto, 'title' | 'year'>) => `${movie.title} ${movie.year}`;
 
 // Transform movies data into map to  optimize search
 const allMoviesMap = new Map<string, MovieDto>(
