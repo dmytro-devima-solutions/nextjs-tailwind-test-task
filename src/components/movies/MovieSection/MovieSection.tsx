@@ -15,7 +15,7 @@ const MovieSection = ({ movie }: MovieSectionProps) => {
         src={movie.thumbnail}
         alt={movie.title}
         errorText="No Image"
-        className="min-h-96 rounded-lg"
+        className="min-h-96 rounded-lg overflow-hidden"
         imageClassName="w-full"
       />
       <div className="lg:col-span-2">
