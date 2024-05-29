@@ -9,7 +9,7 @@ export interface HeroProps {
 const Hero = ({ title, text, button }: HeroProps) => {
   return (
     <section
-      className="hero min-h-screen"
+      className="hero min-h-[calc(100vh-64px)]"
       style={{
         backgroundImage: 'url(/hero-background.jpg)',
       }}

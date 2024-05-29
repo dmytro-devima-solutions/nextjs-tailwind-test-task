@@ -21,7 +21,7 @@ export interface MovieSearchOptions {
   limit?: number;
 }
 
-const getMovieKey = (movie: Pick<MovieDto, 'title' | 'year'>) => `${movie.title}-${movie.year}`;
+const getMovieKey = (movie: Pick<MovieDto, 'title' | 'year'>) => `${movie.title} ${movie.year}`;
 
 // Transform movies data into map to  optimize search
 const allMoviesMap = new Map<string, MovieDto>(
